@@ -2,7 +2,7 @@
 from django.conf.urls.defaults import patterns, url
 from rest_framework.urlpatterns import format_suffix_patterns
 
-from restapi.config_policy import views
+from dcpm.config_policy import views
 
 
 restfw_api_urlpatterns = patterns(

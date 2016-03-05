@@ -1,14 +1,11 @@
 
 import unittest
-import os
 import random
-
-os.environ['DJANGO_SETTINGS_MODULE'] = 'restapi.settings'
 
 from django.db import IntegrityError
 
-from restapi.config_policy import models
-from restapi.config_policy.tests.utils import get_test_hash_id
+from dcpm.config_policy import models
+from dcpm.config_policy.tests.utils import get_test_hash_id
 
 
 class TestConfigPolicysSchemeModel(unittest.TestCase):

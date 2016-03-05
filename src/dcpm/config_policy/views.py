@@ -1,15 +1,17 @@
+from django.shortcuts import render
+
+# Create your views here.
 
 from rest_framework import status
-from rest_framework.views import APIView
+from rest_framework import generics
+from rest_framework import mixins
 from rest_framework.response import Response
 
-from restapi.common import generics
-from restapi.common import mixins
-from restapi.config_policy import models
-from restapi.config_policy import serializers
+from dcpm.config_policy import models
+from dcpm.config_policy import serializers
 
 
-class ConfigPolicyListAPI(generics.RestAPIGenericView,
+class ConfigPolicyListAPI(generics.GenericAPIView,
                           mixins.ListModelMixin,
                           mixins.CreateModelMixin):
 
@@ -28,7 +30,7 @@ class ConfigPolicyListAPI(generics.RestAPIGenericView,
         ).create(request, *args, **kwargs)
 
 
-class ConfigPolicyAPI(generics.RestAPIGenericView,
+class ConfigPolicyAPI(generics.GenericAPIView,
                       mixins.RetrieveModelMixin,
                       mixins.UpdateModelMixin,
                       mixins.DestroyModelMixin):
@@ -53,7 +55,7 @@ class ConfigPolicyAPI(generics.RestAPIGenericView,
         ).destroy(request, *args, **kwargs)
 
 
-class ConfigPolicySchemeListAPI(generics.RestAPIGenericView,
+class ConfigPolicySchemeListAPI(generics.GenericAPIView,
                                 mixins.ListModelMixin,
                                 mixins.CreateModelMixin):
 
@@ -80,7 +82,7 @@ class ConfigPolicySchemeListAPI(generics.RestAPIGenericView,
         ).create(request, *args, **kwargs)
 
 
-class ConfigPolicySchemeAPI(generics.RestAPIGenericView,
+class ConfigPolicySchemeAPI(generics.GenericAPIView,
                             mixins.RetrieveModelMixin,
                             mixins.UpdateModelMixin,
                             mixins.DestroyModelMixin):
@@ -111,7 +113,7 @@ class ConfigPolicySchemeAPI(generics.RestAPIGenericView,
         ).destroy(request, *args, **kwargs)
 
 
-class ConfigPolicyRuleListAPI(generics.RestAPIGenericView,
+class ConfigPolicyRuleListAPI(generics.GenericAPIView,
                               mixins.ListModelMixin,
                               mixins.CreateModelMixin):
 
@@ -134,7 +136,7 @@ class ConfigPolicyRuleListAPI(generics.RestAPIGenericView,
         ).create(request, *args, **kwargs)
 
 
-class ConfigPolicyRuleAPI(generics.RestAPIGenericView,
+class ConfigPolicyRuleAPI(generics.GenericAPIView,
                             mixins.RetrieveModelMixin,
                             mixins.UpdateModelMixin,
                             mixins.DestroyModelMixin):
@@ -165,7 +167,7 @@ class ConfigPolicyRuleAPI(generics.RestAPIGenericView,
         ).destroy(request, *args, **kwargs)
 
 
-class ConfigPolicyValidationAPI(generics.RestAPIGenericView):
+class ConfigPolicyValidationAPI(generics.GenericAPIView):
 
     queryset = models.ConfigPolicy.objects.all()
     serializer_class = serializers.ConfigPolicySerializer

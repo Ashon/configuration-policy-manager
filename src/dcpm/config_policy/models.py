@@ -1,12 +1,12 @@
+from __future__ import unicode_literals
 
 from django.db import models
+
+# Create your models here.
+
 from django.db import IntegrityError
 
 import jinja2
-
-from restapi.shared_components.models import BaseModel
-
-
 CONFIG_MODEL_NAME_MAX_LENGTH = 40
 CONFIG_MODEL_DESCRIPTION_MAX_LENGTH = 4096
 
@@ -46,11 +46,7 @@ class ConfigPolicyEnvironment(object):
             self.environment.globals[name] = fn
 
 
-class ConfigPolicyAbstractModel(BaseModel):
-
-    class RestAPIModelMeta(object):
-        router = 'config_policy'
-        allow_delete = True
+class ConfigPolicyAbstractModel(models.Model):
 
     class Meta(object):
         abstract = True
@@ -209,7 +205,7 @@ class ConfigPolicyScheme(ConfigPolicyAbstractModel):
 
     class Meta(object):
         db_table = 'config_policy_scheme'
-        unique_together = ('scheme_id', 'policy_id')
+        unique_together = ('scheme_id', 'policy')
 
     def save(self, *args, **kwargs):
 

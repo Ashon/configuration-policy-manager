@@ -1,7 +1,7 @@
 
 from rest_framework import serializers
 
-from restapi.config_policy import models
+from dcpm.config_policy import models
 
 
 class ConfigPolicySchemeSerializer(serializers.ModelSerializer):
